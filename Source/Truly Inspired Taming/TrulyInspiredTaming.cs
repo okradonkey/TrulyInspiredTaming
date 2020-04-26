@@ -66,7 +66,7 @@ namespace TrulyInspiredTaming
                                 break;
                         }
                         // Round down the boost
-                        int intSkillAdj = Convert.ToInt32(skillAdj);
+                        int intSkillAdj = (int)Math.Floor(skillAdj);
                         if ( (curSkill + intSkillAdj) >= animalSkillReq)
                         {
                             newResult = true;
