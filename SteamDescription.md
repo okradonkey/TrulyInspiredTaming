@@ -1,9 +1,9 @@
-Colonists with Inspired Taming can tame animals beyond their current skill level.
+Colonists with Inspired Taming can now tame animals beyond their current skill level.
+Mod settings provide three options to determine how far beyond:
+- Tame any animal
+- Boost by percentage
+- Boost by levels
 
-In the mod options you can:
-    - totally ignore minimum skill requirements for inspired taming, or
-    - give the inspired colonist an temporary adjustable skill level boost for inspired taming.
-    
 This does not change a colonist's actual Animals skill level.
 
 [h1]Compatibility[/h1]

@@ -1,12 +1,12 @@
 # Truly Inspired Taming
 A RimWorld mod:
 
-Colonists with Inspired Taming can tame animals beyond their current skill level.
+Colonists with Inspired Taming can now tame animals beyond their current skill level.
+Mod settings provide three options to determine how far beyond:
+- Tame any animal
+- Boost by percentage
+- Boost by levels
 
-In the mod options you can:
-    - totally ignore minimum skill requirements for inspired taming, or
-    - give the inspired colonist an temporary adjustable skill level boost for inspired taming.
-    
 This does not change a colonist's actual Animals skill level.
 
 ### Compatibility
@@ -27,7 +27,7 @@ u/GnomeYork
 
 # Installation
 Add _Truly Inspired Taming_ anywhere in your load order.
-- Subscribe at the [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=XXX)
+- Subscribe at the [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=2074830225)
 
  _or_
 
