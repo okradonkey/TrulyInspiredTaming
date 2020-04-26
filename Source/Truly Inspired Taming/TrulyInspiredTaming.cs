@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -6,58 +7,31 @@ using RimWorld;
 using Verse;
 using Verse.AI;
 
-namespace Truly_Inspired_Taming
+namespace TrulyInspiredTaming
 {
-
-
-
-
-    // example settings usage in main mod
-    //
-    // LoadedModManager.GetMod<Truly_Inspired_Taming>().GetSettings<BoostSettings>().BoostLevels
-    //
-    // var settings = LoadedModManager.GetMod<Truly_Inspired_Taming>().GetSettings<BoostSettings>();
-    // if (!settings.BoostLevels.Contains(name))
-    // settings.BoostLevels.Add("c");
-    // settings.Write();
-
-
-
-
-
-
-
-    // Colonists with Inspired Taming can tame animals beyond their current skill level.
-    //
-    // In the mod options you can:
-    //   - totally ignore minimum skill requirements for inspired taming, or
-    //   - give the inspired colonist an temporary adjustable skill level boost for inspired taming.
+    // Colonists with Inspired Taming can now tame animals beyond their current skill level.
+    // Mod settings provide three options to determine how far beyond:
+    //   - Tame any animal
+    //   - Boost by percentage
+    //   - Boost by levels
     //
     // This does not change a colonist's actual Animals skill level.
 
     // Strategy: Postfix WorkGiver_InteractAnimal.CanInteractWithAnimal
 
-    // TO DO: 
-    // Add skill boost settings
-    // Change override to evaluate skill boost
-
     [StaticConstructorOnStartup]
-    public static class HarmonyPatches
+    static class HarmonyPatches
     {
         static HarmonyPatches()
         {
-            // The Harmony_id is only used by other patches that might want to load before/after this one
-            Harmony harmonyInstance = new Harmony(id: "RimWorld.OkraDonkey.Truly_Inspired_Taming.main");
-            harmonyInstance.PatchAll();
-        }
-    }
+            Harmony harmonyInstance = new Harmony(id: "RimWorld.OkraDonkey.TrulyInspiredTaming.main");
 
-    [HarmonyPatch(typeof(WorkGiver_InteractAnimal), "CanInteractWithAnimal")]
-    public static class TamingBoostPatch
-    {
-        // Original:
-        // protected virtual bool CanInteractWithAnimal(Pawn pawn, Pawn animal, bool forced)
-        public static void PostFix(ref bool __result, Pawn pawn, Pawn animal, bool forced)
+            harmonyInstance.Patch(AccessTools.Method(typeof(WorkGiver_InteractAnimal), "CanInteractWithAnimal"),
+                postfix: new HarmonyMethod(typeof(HarmonyPatches), nameof(RecheckTaming)));
+
+        }
+
+        public static void RecheckTaming(ref bool __result, Pawn pawn, Pawn animal, bool forced)
         {
             bool newResult = false;
 
@@ -65,23 +39,47 @@ namespace Truly_Inspired_Taming
             if (!__result)
             {
                 // If the reason for failure is AnimalsSkillTooLow
-                int num = TrainableUtility.MinimumHandlingSkill(animal);
-                if (JobFailReason.Reason == "AnimalsSkillTooLow".Translate(num))
+                int animalSkillReq = TrainableUtility.MinimumHandlingSkill(animal);
+                if (JobFailReason.Reason == "AnimalsSkillTooLow".Translate(animalSkillReq))
                 {
-                    // If our Interactor has inspired taming
+                    // If the colonist has inspired taming
                     if (pawn.InspirationDef == InspirationDefOf.Inspired_Taming)
                     {
-                        // override and unfail it
-                        newResult = true;
-
-                        // Later: allow smaller skill boost
-                        // num adjSkill = pawn.skills.GetSkill(SkillDefOf.Animals).Level + intTrulyInspiredTamingBoost    
-                        // if (num <= adjSkill) {newResult = true;}
+                        // Get colonist's current Animal skill level
+                        float skillAdj = 0;
+                        int curSkill = pawn.skills.GetSkill(SkillDefOf.Animals).Level;
+                        switch (BoostSettings.Boost)
+                        {
+                            case BoostSettings.BoostType.Unlimited:
+                                // Boost skill to max
+                                skillAdj = 20 - curSkill;
+                                break;
+                            case BoostSettings.BoostType.Percentage:
+                                // Boost skill by percentage
+                                float BoostPerc = BoostSettings.BoostPercentage;
+                                skillAdj = curSkill * BoostPerc;
+                                break;
+                            case BoostSettings.BoostType.Levels:
+                                // Boost skill by number of levels
+                                float BoostLevels = BoostSettings.BoostLevels;
+                                skillAdj = BoostLevels;
+                                break;
+                        }
+                        // Round down the boost
+                        int intSkillAdj = Convert.ToInt32(skillAdj);
+                        if ( (curSkill + intSkillAdj) >= animalSkillReq)
+                        {
+                            newResult = true;
+                        }
+                        else
+                        {
+                            JobFailReason.Is("TIT_AnimalSkillStillTooLow".Translate(animalSkillReq, curSkill, intSkillAdj), null);
+                            newResult = false;
+                        }
                     }
                 }
             }
             __result = __result || newResult;
-
         }
     }
 }

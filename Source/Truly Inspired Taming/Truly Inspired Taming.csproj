@@ -6,8 +6,8 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <OutputType>Library</OutputType>
-    <RootNamespace>Truly_Inspired_Taming</RootNamespace>
-    <AssemblyName>Truly Inspired Taming</AssemblyName>
+    <RootNamespace>TrulyInspiredTaming</RootNamespace>
+    <AssemblyName>TrulyInspiredTaming</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <TargetFrameworkProfile />
@@ -57,18 +57,29 @@
     <DefineConstants />
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Settings.cs" />
+    <Compile Include="TrulyInspiredTaming.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <UpToDateCheckInput Include="$(SolutionDir)\..\*.xml" />
+    <UpToDateCheckInput Include="$(SolutionDir)\..\*.jpg" />
+    <UpToDateCheckInput Include="$(SolutionDir)\..\*.ogg" />
+  </ItemGroup>
+  <ItemGroup>
     <Reference Include="0Harmony, Version=2.0.0.10, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Lib.Harmony.2.0.0.10\lib\net472\0Harmony.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="1SettingsHelper">
+    <Reference Include="1SettingsHelper, Version=0.19.1.36477, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\SettingsHelper\Assemblies\1SettingsHelper.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Assembly-CSharp">
       <HintPath>Z:\SteamLibrary\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="System" />
     <Reference Include="System.Runtime.InteropServices.RuntimeInformation" />
     <Reference Include="UnityEngine">
       <HintPath>Z:\SteamLibrary\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\UnityEngine.dll</HintPath>
@@ -78,22 +89,6 @@
       <HintPath>Z:\SteamLibrary\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="UnityEngine.IMGUIModule">
-      <HintPath>Z:\SteamLibrary\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.TextRenderingModule">
-      <HintPath>Z:\SteamLibrary\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Settings.cs" />
-    <Compile Include="TrulyInspiredTaming.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <UpToDateCheckInput Include="$(SolutionDir)\..\*.xml" />
-    <UpToDateCheckInput Include="$(SolutionDir)\..\*.jpg" />
-    <UpToDateCheckInput Include="$(SolutionDir)\..\*.ogg" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
