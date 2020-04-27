@@ -41,43 +41,44 @@ namespace TrulyInspiredTaming
                 int animalSkillReq = TrainableUtility.MinimumHandlingSkill(animal);
                 if (JobFailReason.Reason == "AnimalsSkillTooLow".Translate(animalSkillReq))
                 {
-                    // If the colonist has inspired taming
+                    // If the colonist has Inspired Taming
                     if (pawn.InspirationDef == InspirationDefOf.Inspired_Taming)
                     {
                         // Get colonist's current Animal skill level
-                        float skillAdj = 0f;
                         int curSkill = pawn.skills.GetSkill(SkillDefOf.Animals).Level;
+
+                        // How much skill boost should be added by Inspired Taming
+                        int skillBoost = 0;
                         switch (BoostSettings.Boost)
                         {
                             case BoostSettings.BoostType.Unlimited:
                                 // Boost skill to max
-                                skillAdj = 20 - curSkill;
+                                skillBoost = 20 - curSkill;
                                 break;
                             case BoostSettings.BoostType.Percentage:
                                 // Boost skill by percentage
-                                float BoostPerc = BoostSettings.BoostPercentage;
-                                skillAdj = curSkill * BoostPerc;
+                                skillBoost = (int)Math.Floor(curSkill * BoostSettings.BoostPercentage);
                                 break;
                             case BoostSettings.BoostType.Levels:
                                 // Boost skill by number of levels
-                                float BoostLevels = BoostSettings.BoostLevels;
-                                skillAdj = BoostLevels;
+                                skillBoost = (int)BoostSettings.BoostLevels;
                                 break;
                         }
-                        // Round down the boost
-                        int intSkillAdj = (int)Math.Floor(skillAdj);
-                        if ( (curSkill + intSkillAdj) >= animalSkillReq)
+                        if ((curSkill + skillBoost) >= animalSkillReq)
                         {
+                            // Allow the colonist to tame the animal
                             newResult = true;
                         }
                         else
                         {
-                            JobFailReason.Is("TIT_AnimalSkillStillTooLow".Translate(animalSkillReq, curSkill, intSkillAdj), null);
+                            // The colonist's skill is still too low to tame the animal
+                            JobFailReason.Is("TIT_AnimalSkillStillTooLow".Translate(animalSkillReq, curSkill, skillBoost), null);
                             newResult = false;
                         }
                     }
                 }
             }
+            // Pass the original result, but allow Inspired Taming to override it if applicable
             __result = __result || newResult;
         }
     }
