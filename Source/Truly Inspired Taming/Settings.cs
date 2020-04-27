@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using RimWorld;
-using Verse;
+﻿using Verse;
 using UnityEngine;
 using SettingsHelper;
 
 namespace TrulyInspiredTaming
 {
-    public class BoostSettings : ModSettings
+    internal class BoostSettings : ModSettings
     {
         public enum BoostType : byte
         {
@@ -45,7 +40,7 @@ namespace TrulyInspiredTaming
             }
             if (Boost == BoostType.Percentage)
             {
-                _Listing_Standard.AddLabeledSlider("    +" + (100 * BoostPercentage).ToString() + "%", ref BoostPercentage, 0, 1, "+0%", "+100%", 0.1f, false);
+                _Listing_Standard.AddLabeledSlider($"    +{100*BoostPercentage}%", ref BoostPercentage, 0, 1, "+0%", "+100%", 0.1f, false);
             }
             if (_Listing_Standard.RadioButton("TIT_BoostByLevels".Translate(), Boost == BoostType.Levels, 0f, null))
             {
@@ -53,7 +48,7 @@ namespace TrulyInspiredTaming
             }
             if (Boost == BoostType.Levels)
             {
-                _Listing_Standard.AddLabeledSlider("    +" + BoostLevels.ToString(), ref BoostLevels, 0, 20, "+0", "+20", 1, false);
+                _Listing_Standard.AddLabeledSlider($"    +{BoostLevels}", ref BoostLevels, 0, 20, "+0", "+20", 1, false);
             }
             _Listing_Standard.End();
         }
@@ -67,7 +62,7 @@ namespace TrulyInspiredTaming
         }
     }
 
-    public class TrulyInspiredTaming : Mod
+    internal class TrulyInspiredTaming : Mod
     {
         public TrulyInspiredTaming(ModContentPack content) : base(content)
         {

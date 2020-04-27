@@ -1,7 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
 using HarmonyLib;
 using RimWorld;
 using Verse;
@@ -20,7 +17,7 @@ namespace TrulyInspiredTaming
     // Strategy: Postfix WorkGiver_InteractAnimal.CanInteractWithAnimal
 
     [StaticConstructorOnStartup]
-    static class HarmonyPatches
+    internal static class HarmonyPatches
     {
         static HarmonyPatches()
         {
@@ -30,7 +27,7 @@ namespace TrulyInspiredTaming
                 postfix: new HarmonyMethod(typeof(HarmonyPatches), nameof(RecheckTaming)));
         }
 
-        public static void RecheckTaming(ref bool __result, Pawn pawn, Pawn animal, bool forced)
+        private static void RecheckTaming(ref bool __result, Pawn pawn, Pawn animal)
         {
             bool newResult = false;
 
