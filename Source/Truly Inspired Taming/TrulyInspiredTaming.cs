@@ -28,7 +28,6 @@ namespace TrulyInspiredTaming
 
             harmonyInstance.Patch(AccessTools.Method(typeof(WorkGiver_InteractAnimal), "CanInteractWithAnimal"),
                 postfix: new HarmonyMethod(typeof(HarmonyPatches), nameof(RecheckTaming)));
-
         }
 
         public static void RecheckTaming(ref bool __result, Pawn pawn, Pawn animal, bool forced)
@@ -46,7 +45,7 @@ namespace TrulyInspiredTaming
                     if (pawn.InspirationDef == InspirationDefOf.Inspired_Taming)
                     {
                         // Get colonist's current Animal skill level
-                        float skillAdj = 0;
+                        float skillAdj = 0f;
                         int curSkill = pawn.skills.GetSkill(SkillDefOf.Animals).Level;
                         switch (BoostSettings.Boost)
                         {

@@ -18,11 +18,9 @@ namespace TrulyInspiredTaming
             Levels = 2,
         }
 
-        #region Options
         public static BoostType Boost = BoostType.Unlimited;
         public static float BoostPercentage = 0.2f;
         public static float BoostLevels = 4f;
-        #endregion
 
         public void DoWindowContents(Rect canvas)
         {
