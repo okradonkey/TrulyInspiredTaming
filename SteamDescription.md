@@ -7,6 +7,7 @@ Mod settings provide three options to determine how far beyond:
 This does not change a colonist's actual Animals skill level.
 
 [h1]Compatibility[/h1]
+- Compatible with RimWorld v1.1, v1.2, and the Royalty DLC.
 - No known incompatibilities.
 
 [h1]Notes[/h1]
