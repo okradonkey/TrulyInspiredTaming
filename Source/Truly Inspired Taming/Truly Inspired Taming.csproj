@@ -26,7 +26,7 @@
     <FileAlignment>4096</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-    <OutputPath>..\..\Assemblies\</OutputPath>
+    <OutputPath>..\..\v1.3\Assemblies\</OutputPath>
     <DebugSymbols>True</DebugSymbols>
     <DebugType>None</DebugType>
     <Optimize>False</Optimize>
@@ -35,7 +35,7 @@
     <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\..\v1.3\Assemblies\</OutputPath>
     <DebugSymbols>False</DebugSymbols>
     <DebugType>None</DebugType>
     <Optimize>True</Optimize>
@@ -43,7 +43,7 @@
     <DefineConstants>TRACE</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-    <OutputPath>..\..\v1.2\Assemblies\</OutputPath>
+    <OutputPath>..\..\v1.3\Assemblies\</OutputPath>
     <DebugType>portable</DebugType>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
@@ -52,7 +52,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <Prefer32Bit>false</Prefer32Bit>
-    <OutputPath>..\..\v1.2\Assemblies\</OutputPath>
+    <OutputPath>..\..\v1.3\Assemblies\</OutputPath>
     <DebugType>none</DebugType>
     <DefineConstants />
   </PropertyGroup>
@@ -60,6 +60,7 @@
     <Compile Include="Settings.cs" />
     <Compile Include="TrulyInspiredTaming.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WorkGiver_InteractAnimal_CanInteractWithAnimal.cs" />
   </ItemGroup>
   <ItemGroup>
     <UpToDateCheckInput Include="$(SolutionDir)\..\*.xml" />
@@ -67,34 +68,22 @@
     <UpToDateCheckInput Include="$(SolutionDir)\..\*.ogg" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="0Harmony, Version=2.0.0.10, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Lib.Harmony.2.0.0.10\lib\net472\0Harmony.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="1SettingsHelper, Version=0.19.1.36477, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\SettingsHelper\Assemblies\1SettingsHelper.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Assembly-CSharp">
-      <HintPath>Z:\SteamLibrary\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\Assembly-CSharp.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="1SettingsHelper">
+      <HintPath>..\1SettingsHelper.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.InteropServices.RuntimeInformation" />
-    <Reference Include="UnityEngine">
-      <HintPath>Z:\SteamLibrary\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\UnityEngine.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="UnityEngine.CoreModule">
-      <HintPath>Z:\SteamLibrary\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <PackageReference Include="Krafs.Rimworld.Ref">
+      <Version>*</Version>
+    </PackageReference>
+    <PackageReference Include="Lib.Harmony">
+      <Version>*</Version>
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>"$(SolutionDir)Install.bat" $(ConfigurationName) "$(SolutionDir)" "$(ProjectName)" "About Assemblies Languages Textures v1.1 v1.2" "LoadFolders.xml README.md LICENSE"</PostBuildEvent>
+	<PostBuildEvent>"$(SolutionDir)Install.bat" $(ConfigurationName) "$(SolutionDir)" "$(ProjectName)" "About Assemblies Languages Textures v1.1 v1.2 v1.3" "LoadFolders.xml README.md LICENSE"</PostBuildEvent> 
   </PropertyGroup>
 </Project>
