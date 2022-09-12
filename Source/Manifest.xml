@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Manifest>
+  <identifier>OkraDonkey.TrulyInspiredTaming</identifier>
+  <version>0.3.0.20118</version>
+  <showCrossPromotions>false</showCrossPromotions>
+  <manifestUri>https://github.com/okradonkey/TrulyInspiredTaming/raw/master/About/Manifest.xml</manifestUri>
+  <downloadUri>https://github.com/okradonkey/TrulyInspiredTaming/releases/latest</downloadUri>
+</Manifest>

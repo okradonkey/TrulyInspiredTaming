@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <name>Truly Inspired Taming</name>
+  <author>OkraDonkey</author>
+  <packageId>OkraDonkey.TrulyInspiredTaming</packageId>
+  <supportedVersions>
+    <li>1.1</li>
+    <li>1.2</li>
+  </supportedVersions>
+  <description>
+Colonists with Inspired Taming can now tame animals beyond their current skill level.
+Mod settings provide three options to determine how far beyond:
+- Tame any animal
+- Boost by percentage
+- Boost by levels
+
+This does not change a colonist's actual Animals skill level.
+
+### Compatibility 
+- Compatible with RimWorld v1.1 and the Royalty DLC. 
+- No known incompatibilities
+
+### Notes
+- Is perfectly safe to add or remove at any time from your save.
+- Can be placed anywhere in the mod list.
+- Doesn't add or remove anything - it just adds an extra allowance for
+  inspired taming to CanInteractWithAnimal.
+    </description>
+  <url>https://github.com/Okradonkey/TrulyInspiredTaming</url>
+</ModMetaData>

@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- Settings -->
+  <TIT_Title>Truly Inspired Taming</TIT_Title>
+  <TIT_TamingSkillBoostType>Inspired Taming level boost</TIT_TamingSkillBoostType>
+  <TIT_SettingsExplanation>Colonists with Inspired Taming can now tame animals beyond their current skill level.  These options determine how far beyond.</TIT_SettingsExplanation>
+  <TIT_TameAnyAnimal>Tame any animal</TIT_TameAnyAnimal>
+  <TIT_BoostByPercentage>Boost by percentage</TIT_BoostByPercentage>
+  <TIT_BoostByLevels>Boost by levels</TIT_BoostByLevels>
+  <TIT_AnimalSkillStillTooLow>animals skill too low - need {0} (has {1} + {2} inspired boost)</TIT_AnimalSkillStillTooLow>
+</LanguageData>
