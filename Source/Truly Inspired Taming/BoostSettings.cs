@@ -1,5 +1,4 @@
-﻿using SettingsHelper;
-using UnityEngine;
+﻿using UnityEngine;
 using Verse;
 
 namespace TrulyInspiredTaming;
@@ -44,9 +43,8 @@ internal class BoostSettings : ModSettings
 
         if (Boost == BoostType.Percentage)
         {
-            _Listing_Standard.AddLabeledSlider($"    +{BoostPercentage.ToStringPercent()}", ref BoostPercentage, 0, 1,
-                "+0%",
-                "+100%", 0.1f);
+            BoostPercentage =
+                _Listing_Standard.SliderLabeled($"    +{BoostPercentage.ToStringPercent()}", BoostPercentage, 0, 1);
         }
 
         if (_Listing_Standard.RadioButton("TIT_BoostByLevels".Translate(), Boost == BoostType.Levels))
@@ -56,7 +54,15 @@ internal class BoostSettings : ModSettings
 
         if (Boost == BoostType.Levels)
         {
-            _Listing_Standard.AddLabeledSlider($"    +{BoostLevels}", ref BoostLevels, 0, 20, "+0", "+20", 1);
+            BoostLevels = _Listing_Standard.SliderLabeled($"    +{BoostLevels}", BoostLevels, 0, 20);
+        }
+
+        if (TrulyInspiredTaming.currentVersion != null)
+        {
+            _Listing_Standard.Gap();
+            GUI.contentColor = Color.gray;
+            _Listing_Standard.Label("TIT_CurrentModVersion".Translate(TrulyInspiredTaming.currentVersion));
+            GUI.contentColor = Color.white;
         }
 
         _Listing_Standard.End();
@@ -68,23 +74,5 @@ internal class BoostSettings : ModSettings
         Scribe_Values.Look(ref Boost, "Boost", BoostType.Unlimited, true);
         Scribe_Values.Look(ref BoostPercentage, "BoostPercentage", 0.2f, true);
         Scribe_Values.Look(ref BoostLevels, "BoostLevels", 4f, true);
-    }
-}
-
-internal class TrulyInspiredTaming : Mod
-{
-    public TrulyInspiredTaming(ModContentPack content) : base(content)
-    {
-        GetSettings<BoostSettings>();
-    }
-
-    public override string SettingsCategory()
-    {
-        return "TIT_Title".Translate();
-    }
-
-    public override void DoSettingsWindowContents(Rect inRect)
-    {
-        GetSettings<BoostSettings>().DoWindowContents(inRect);
     }
 }

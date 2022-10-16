@@ -8,6 +8,7 @@
     <li>1.1</li>
     <li>1.2</li>
     <li>1.3</li>
+    <li>1.4</li>
   </supportedVersions>
   <modDependencies>
     <li>
@@ -58,9 +59,6 @@ This does not change a colonist's actual Animals skill level.
 [h1]Inspired by[/h1]
 u/GnomeYork
 
-[h1]GitHub[/h1]
-- [url=https://github.com/okradonkey/TrulyInspiredTaming/issues]Bug reports[/url]
-- [url=https://github.com/okradonkey/TrulyInspiredTaming/releases/latest]Manual download[/url]
 [img]https://i.imgur.com/PwoNOj4.png[/img]
 [list]
 [*] See if the the error persists if you just have this mod and its requirements active.

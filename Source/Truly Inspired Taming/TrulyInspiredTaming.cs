@@ -1,26 +1,28 @@
-using System.Reflection;
-using HarmonyLib;
+﻿using Mlie;
+using UnityEngine;
 using Verse;
 
-// Colonists with Inspired Taming can now tame animals beyond their current skill level.
-// Mod settings provide three options to determine how far beyond:
-//   - Tame any animal
-//   - Boost by percentage
-//   - Boost by levels
-//
-// This does not change a colonist's actual Animals skill level.
+namespace TrulyInspiredTaming;
 
-// Strategy: Postfix WorkGiver_InteractAnimal.CanInteractWithAnimal
-
-namespace TrulyInspiredTaming
+internal class TrulyInspiredTaming : Mod
 {
-    [StaticConstructorOnStartup]
-    internal static class HarmonyPatches
+    public static string currentVersion;
+
+    public TrulyInspiredTaming(ModContentPack content) : base(content)
     {
-        static HarmonyPatches()
-        {
-            var harmonyInstance = new Harmony("RimWorld.OkraDonkey.TrulyInspiredTaming.main");
-            harmonyInstance.PatchAll(Assembly.GetExecutingAssembly());
-        }
+        GetSettings<BoostSettings>();
+        currentVersion =
+            VersionFromManifest.GetVersionFromModMetaData(
+                ModLister.GetActiveModWithIdentifier("Mlie.TrulyInspiredTaming"));
+    }
+
+    public override string SettingsCategory()
+    {
+        return "TIT_Title".Translate();
+    }
+
+    public override void DoSettingsWindowContents(Rect inRect)
+    {
+        GetSettings<BoostSettings>().DoWindowContents(inRect);
     }
 }

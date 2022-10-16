@@ -33,10 +33,6 @@ This does not change a colonist's actual Animals skill level.
 
 u/GnomeYork
 
-# GitHub
-
-- https://github.com/okradonkey/TrulyInspiredTaming/issues]Bug reports
-- https://github.com/okradonkey/TrulyInspiredTaming/releases/latest]Manual download
 ![Image](https://i.imgur.com/PwoNOj4.png)
 
 

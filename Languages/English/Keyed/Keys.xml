@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
   <!-- Settings -->
+  <TIT_CurrentModVersion>Installed mod-version: {0}</TIT_CurrentModVersion>
   <TIT_Title>Truly Inspired Taming</TIT_Title>
   <TIT_TamingSkillBoostType>Inspired Taming level boost</TIT_TamingSkillBoostType>
   <TIT_SettingsExplanation>Colonists with Inspired Taming can now tame animals beyond their current skill level.  These options determine how far beyond.</TIT_SettingsExplanation>
