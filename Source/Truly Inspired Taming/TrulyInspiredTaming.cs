@@ -12,8 +12,7 @@ internal class TrulyInspiredTaming : Mod
     {
         GetSettings<BoostSettings>();
         currentVersion =
-            VersionFromManifest.GetVersionFromModMetaData(
-                ModLister.GetActiveModWithIdentifier("Mlie.TrulyInspiredTaming"));
+            VersionFromManifest.GetVersionFromModMetaData(content.ModMetaData);
     }
 
     public override string SettingsCategory()

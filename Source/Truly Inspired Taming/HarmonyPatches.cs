@@ -19,7 +19,6 @@ internal static class HarmonyPatches
 {
     static HarmonyPatches()
     {
-        var harmonyInstance = new Harmony("RimWorld.OkraDonkey.TrulyInspiredTaming.main");
-        harmonyInstance.PatchAll(Assembly.GetExecutingAssembly());
+        new Harmony("RimWorld.OkraDonkey.TrulyInspiredTaming.main").PatchAll(Assembly.GetExecutingAssembly());
     }
 }
